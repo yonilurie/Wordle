@@ -33,7 +33,7 @@ function App() {
 					setGameOn={setGameOn}
 				></StartPage>
 			)}
-			<GamePage></GamePage>
+			<GamePage word={word}></GamePage>
 		</div>
 	);
 }

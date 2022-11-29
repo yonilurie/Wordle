@@ -1,5 +1,47 @@
+/* Main game page container */
 .game-page {
-    width: 100%;
-    height: 100%;
-    background-color: rgb(18,18,19);
+	width: 100%;
+	height: 100%;
+	background-color: rgb(255, 255, 255);
+	position: relative;
+}
+
+/* Nav Bar */
+
+.nav-bar {
+	height: 66px;
+	border-bottom: solid 1px var(--light-border);
+	padding: 0px 20px;
+}
+
+/* Hamburger menu */
+.hamburger.stowed {
+	left: -100vw;
+}
+
+.hamburger {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	max-width: 100vw;
+	z-index: 2;
+	left: 0;
+	transition: 300ms;
+}
+
+.hamburger-menu {
+	box-shadow: rgba(0, 0, 0, 0.15) 3px 5px 5px 0px;
+	max-width: 373px;
+	background-color: white;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 3;
+}
+
+.hamburger-menu.stowed {
+	left: 500px;
+	left: -373px;
 }

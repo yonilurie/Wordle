@@ -30,23 +30,54 @@ const GamePage: FC<Props> = ({ word }) => {
 					className="hamburger-toggle"
 					onClick={() => setShowHamburger((state) => !state)}
 				>
-					<i className="fa-solid fa-bars"></i>
+					<i className="fa-solid fa-bars" />
 				</div>
 				<div className="game-title smaller-title">Wordle</div>
 				<div>
-					<i className="fa-solid fa-gear"></i>
+					<i className="fa-solid fa-gear" />
 				</div>
 			</div>
 			<div className="wordle-container">
 				<div className="wordle-grid">
-					<GridRow></GridRow>
-					<GridRow></GridRow>
-					<GridRow></GridRow>
-					<GridRow></GridRow>
-					<GridRow></GridRow>
+					<GridRow />
+					<GridRow />
+					<GridRow />
+					<GridRow />
 				</div>
 			</div>
-			<div className="keyboard-container"></div>
+			<div className="keyboard-container">
+				<div className="keyboard-row">
+					{["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"].map(
+						(keyboardKey) => (
+							<button className="keyboard-key" key={keyboardKey}>
+								{keyboardKey.toUpperCase()}
+							</button>
+						)
+					)}
+				</div>
+				<div className="keyboard-row">
+					<div className="keyboard-spacer"></div>
+					{["a", "s", "d", "f", "g", "h", "j", "k", "l"].map(
+						(keyboardKey) => (
+							<button className="keyboard-key" key={keyboardKey}>
+								{keyboardKey.toUpperCase()}
+							</button>
+						)
+					)}
+					<div className="keyboard-spacer"></div>
+				</div>
+				<div className="keyboard-row">
+					<div className="keyboard-key action" id='enter'>ENTER</div>
+					{["z", "x", "c", "v", "b", "n", "m"].map((keyboardKey) => (
+						<button className="keyboard-key" key={keyboardKey}>
+							{keyboardKey.toUpperCase()}
+						</button>
+					))}
+                    <div className="keyboard-key action">
+                        <i className="fa-solid fa-delete-left"></i>
+                    </div>
+				</div>
+			</div>
 		</div>
 	);
 };

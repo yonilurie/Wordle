@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
+import StartPage from "./components/StartPage";
+import GamePage from "./components/GamePage";
 import "./App.css";
 
 function App() {
 	const [word, setWord] = useState("");
-
+	const [showStartPage, setShowStartPage] = useState(true);
+	const [gameOn, setGameOn] = useState(false);
 	useEffect(() => {
 		if (!word) getWord();
 	}, []);
@@ -22,7 +24,18 @@ function App() {
 		return randomNumber * 5;
 	};
 
-	return <div className="App"></div>;
+	return (
+		<div className="App">
+			{!gameOn && (
+				<StartPage
+					setShowStartPage={setShowStartPage}
+					showStartPage={showStartPage}
+					setGameOn={setGameOn}
+				></StartPage>
+			)}
+			<GamePage></GamePage>
+		</div>
+	);
 }
 
 export default App;

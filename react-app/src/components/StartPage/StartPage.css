@@ -1,0 +1,114 @@
+.start-page {
+	background-color: rgb(227, 227, 225);
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+	padding: 0px 42px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 2;
+	position: absolute;
+}
+
+.start-page.hidden {
+	opacity: 0;
+	animation: out 500ms;
+}
+
+@keyframes out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+/* Start page content container */
+.start-page-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.start-page-2,
+.start-page-four {
+	text-align: center;
+}
+/* Start page first section */
+.start-page-one {
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.game-title {
+	font-size: 50px;
+	font-weight: bold;
+	width: fit-content;
+}
+
+/* Start page second section */
+.start-page-two {
+	margin: 0px 0px 36px;
+	font-size: 38px;
+	max-width: 375px;
+	text-align: center;
+}
+
+/* Start page third section */
+.start-page-three {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0px 0px 28px;
+}
+
+.button.play {
+	width: 180px;
+	height: 48px;
+	border-radius: 9999px;
+	font-size: 16px;
+	outline: none;
+	border: none;
+	color: rgb(244, 244, 244);
+	background-color: black;
+	padding: 0px 32px;
+	margin: 0px 10px 8px;
+	cursor: pointer;
+}
+
+/* Start page fourth section */
+.start-page-four {
+}
+
+.todays-date {
+	font-weight: 600px;
+	letter-spacing: 0.08px;
+	line-height: 20px;
+}
+
+.edition,
+.start-page-created-by {
+	font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+	font-size: 16px;
+	letter-spacing: 0.08px;
+	line-height: 20px;
+}
+
+/* Wordle icon styling */
+.icon {
+	height: 80px;
+	width: 80px;
+	margin: 0px 0px 12px;
+	margin-right: 0px;
+	background-size: contain;
+
+	background-image: url("../../../public/wordle-icon.svg");
+	background-repeat: no-repeat;
+}

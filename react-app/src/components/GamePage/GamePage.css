@@ -4,6 +4,9 @@
 	height: 100%;
 	background-color: rgb(255, 255, 255);
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 /* Nav Bar */
@@ -12,11 +15,34 @@
 	height: 66px;
 	border-bottom: solid 1px var(--light-border);
 	padding: 0px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.hamburger-toggle {
+	width: fit-content;
+}
+
+.fa-bars::before {
+	cursor: pointer;
+	font-size: 24px;
+}
+
+.fa-gear::before {
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.game-title.smaller-title {
+	font-size: 36px;
 }
 
 /* Hamburger menu */
+
 .hamburger.stowed {
 	left: -100vw;
+	transition: 300ms;
 }
 
 .hamburger {
@@ -26,6 +52,7 @@
 	max-width: 100vw;
 	z-index: 2;
 	left: 0;
+	top: 67px;
 	transition: 300ms;
 }
 
@@ -39,9 +66,36 @@
 	top: 0px;
 	left: 0px;
 	z-index: 3;
+	box-sizing: border-box;
+	padding: 18px;
 }
 
 .hamburger-menu.stowed {
 	left: 500px;
 	left: -373px;
+	transition: 300ms;
+}
+
+/* Wordle board */
+.wordle-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.wordle-grid {
+	display: grid;
+	grid-gap: 5px;
+	height: 312px;
+	width: 310px;
+	grid-template-columns: repeat(5, 1fr);
+}
+.grid-row {
+	display: contents;
+}
+
+.grid-cell {
+	border: solid 2px var(--darker-gray);
+	box-sizing: border-box;
 }

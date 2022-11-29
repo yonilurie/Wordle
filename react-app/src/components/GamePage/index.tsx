@@ -1,4 +1,5 @@
 import "./GamePage.css";
+import GridRow from "./GridRow";
 import { FC, useState } from "react";
 interface Props {
 	word: string;
@@ -27,13 +28,23 @@ const GamePage: FC<Props> = ({ word }) => {
 			<div className="nav-bar">
 				<div
 					className="hamburger-toggle"
-					onClick={() => setShowHamburger(true)}
+					onClick={() => setShowHamburger((state) => !state)}
 				>
-					Hamburger toggle
+					<i className="fa-solid fa-bars"></i>
+				</div>
+				<div className="game-title smaller-title">Wordle</div>
+				<div>
+					<i className="fa-solid fa-gear"></i>
 				</div>
 			</div>
 			<div className="wordle-container">
-				<div className="wordle-grid"></div>
+				<div className="wordle-grid">
+					<GridRow></GridRow>
+					<GridRow></GridRow>
+					<GridRow></GridRow>
+					<GridRow></GridRow>
+					<GridRow></GridRow>
+				</div>
 			</div>
 			<div className="keyboard-container"></div>
 		</div>

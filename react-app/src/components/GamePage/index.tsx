@@ -4,15 +4,18 @@ import { FC, useState, useEffect, useRef } from "react";
 import { useEventListener } from "usehooks-ts";
 interface Props {
 	word: string;
+	isWord: Function;
 }
 
-const GamePage: FC<Props> = ({ word }) => {
+const GamePage: FC<Props> = ({ word, isWord }) => {
 	const documentRef = useRef<Document>(document);
 	const gridRef = useRef(null);
 	const [showHamburger, setShowHamburger] = useState(false);
+
 	const [userWord, setUserWord] = useState("");
 	const [currRow, setCurrRow] = useState(1);
-	const [guesses, setGuesses] = useState<Array<string>>([]);
+	const [guesses, setGuesses] = useState<Array<Array<string>>>([]);
+	const [guessedWords, setGuessedWords] = useState<Array<string>>([]);
 	const [usedLetters, setUsedLetters] = useState<{
 		[key: string]: string;
 	}>({
@@ -44,10 +47,6 @@ const GamePage: FC<Props> = ({ word }) => {
 		z: "inactive",
 	});
 
-	useEffect(() => {
-		console.log(gridRef);
-	}, [gridRef]);
-
 	const type = (e: { key: any; keyCode: number }) => {
 		const key = e.key;
 		const keyCode = e.keyCode;
@@ -59,9 +58,7 @@ const GamePage: FC<Props> = ({ word }) => {
 		if (keyCode === 13) return attemptGuess();
 		if (!isAlpha) return;
 		if (userWord.length === 5) return;
-
 		setUserWord((userWord) => (userWord += key));
-		console.log(userWord);
 	};
 
 	const attemptGuess = () => {
@@ -69,37 +66,54 @@ const GamePage: FC<Props> = ({ word }) => {
 		if (userWord.length < 5) return alert("Too short");
 		// Will add animation later
 
+		if (!isWord(userWord)) return alert("Not a valid word, Try again");
+
+		//Array to track results of guess
+		//This assists in styling the grid
+		let guessResult: Array<string> = new Array(5).fill("absent");
+		let possibleLtrs: Array<string | null> = word.split("");
 		const letterObj = { ...usedLetters };
+		//Find all letters in correct place
 		for (let i = 0; i < 5; i++) {
 			let userChar = userWord[i];
 			let char = word[i];
-			if (word.includes(userChar)) {
-				if (letterObj[userChar] === "correct") break;
-				letterObj[userChar] = "present";
-			} else {
-				letterObj[userChar] = "absent";
+			if (char === userChar) {
+				letterObj[char] = "correct";
+				guessResult[i] = "correct";
+				let idx = possibleLtrs.indexOf(char);
+				possibleLtrs[idx] = null;
 			}
-			if (char === userChar) letterObj[char] = "correct";
 		}
+
+		for (let i = 0; i < 5; i++) {
+			let userChar = userWord[i];
+			if (guessResult[i] === "correct") break;
+			if (word.includes(userChar) && possibleLtrs.includes(userChar)) {
+				letterObj[userChar] = "present";
+				guessResult[i] = "present";
+			} else if (!word.includes(userChar)) {
+				letterObj[userChar] = "absent";
+				guessResult[i] = "absent";
+			}
+		}
+
 		setUsedLetters(letterObj);
 		setCurrRow((currRow) => currRow + 1);
-		setGuesses((guesses) => [...guesses, userWord]);
+		setGuesses((guesses) => [...guesses, guessResult]);
+		setGuessedWords((guessedWords) => [...guessedWords, userWord]);
 		setUserWord("");
-
 		if (userWord === word) setTimeout(() => alert("congrats"), 1000);
+		else if (guesses.length === 5) alert(`failed, the word was ${word}`);
 	};
 
 	const backSpace = () => {
 		if (!userWord.length) return;
-
 		setUserWord((userWord) => userWord.substring(0, userWord.length - 1));
 	};
-
 	useEventListener("keydown", type, documentRef);
 
 	return (
 		<div className="game-page">
-			{word}
 			<div
 				className={`hamburger ${showHamburger ? "" : "stowed"}`}
 				onClick={() => setShowHamburger(false)}
@@ -118,6 +132,7 @@ const GamePage: FC<Props> = ({ word }) => {
 				</div>
 			</div>
 			<div className="nav-bar">
+				{word}
 				<div
 					className="hamburger-toggle"
 					onClick={() => setShowHamburger((state) => !state)}
@@ -131,18 +146,15 @@ const GamePage: FC<Props> = ({ word }) => {
 			</div>
 			<div className="wordle-container">
 				<div className="wordle-grid" ref={gridRef}>
-					{[1, 2, 3, 4, 5, 6].map((gridRow, idx) => {
-						return (
-							<GridRow
-								correctWord={word}
-								word={userWord}
-								row={gridRow}
-								currRow={currRow}
-								guess={guesses[idx]}
-								usedLetters={usedLetters}
-							/>
-						);
-					})}
+					{[1, 2, 3, 4, 5, 6].map((gridRow, idx) => (
+						<GridRow
+							key={idx}
+							usersGuess={userWord}
+							isActiveRow={gridRow === currRow}
+							guessResult={guesses[idx]}
+							guessedWord={guessedWords[idx]}
+						/>
+					))}
 				</div>
 			</div>
 			<div className="keyboard-container">

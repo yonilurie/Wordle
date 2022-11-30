@@ -1,42 +1,33 @@
 import { FC } from "react";
 
 interface Props {
-	correctWord: string;
-	word: string;
-	row: number;
-	currRow: number;
-	guess: string;
-	usedLetters: {
-		[key: string]: string;
-	};
+	isActiveRow: boolean;
+	guessResult: Array<string>;
+	usersGuess: string;
+	guessedWord: string;
 }
-const GridRow: FC<Props> = ({ word, row, currRow, guess, correctWord }) => {
+const GridRow: FC<Props> = ({
+	guessResult,
+	usersGuess,
+	isActiveRow,
+	guessedWord,
+}) => {
 	return (
 		<div className="grid-row">
-			{[0, 1, 2, 3, 4].map((idx) => {
-				return (
-					<div
-						className={`grid-cell ${
-							currRow === row && word.length >= idx + 1
-								? "active"
-								: ""
-						} ${
-							guess && correctWord[idx] === guess[idx]
-								? "correct"
-								: `${
-										row < currRow &&
-										correctWord.includes(guess[idx])
-											? "present"
-											: `${row < currRow ? "absent" : ""}`
-								  }`
-						} `}
-					>
-						{currRow === row
-							? word.length > idx && word[idx]
-							: guess && guess[idx]}
-					</div>
-				);
-			})}
+			{[0, 1, 2, 3, 4].map((idx) => (
+				<div
+					key={idx * 10}
+					className={`grid-cell ${
+						isActiveRow && usersGuess.length > idx ? "active" : ""
+					} ${
+						guessResult && guessResult[idx] ? guessResult[idx] : ""
+					}`}
+				>
+					{isActiveRow
+						? usersGuess[idx]
+						: guessedWord && guessedWord[idx]}
+				</div>
+			))}
 		</div>
 	);
 };

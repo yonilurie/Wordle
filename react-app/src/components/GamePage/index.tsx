@@ -14,6 +14,7 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 	const [showHamburger, setShowHamburger] = useState(false);
 
 	const [userWord, setUserWord] = useState("");
+	const [errors, setErrors] = useState<Array<string>>([]);
 	const [currRow, setCurrRow] = useState(1);
 	const [guesses, setGuesses] = useState<Array<Array<string>>>([]);
 	const [guessedWords, setGuessedWords] = useState<Array<string>>([]);
@@ -67,6 +68,17 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		if (currRow === 7) return;
 		// If word is too short
 		if (userWord.length < 5) {
+			if (errors.length < 10) {
+				setErrors((errors) => [...errors, "Not enough letters"]);
+				setTimeout(
+					() =>
+						setErrors((errors) =>
+							[...errors].slice(0, errors.length - 1)
+						),
+					1000
+				);
+			}
+
 			const row = document.querySelectorAll(`#grid-row-${currRow} > div`);
 			for (let i = 0; i < row?.length; i++) {
 				row[i]?.classList.add("shake");
@@ -79,6 +91,16 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		}
 		// if word isnt valid
 		if (!isWord(userWord)) {
+			if (errors.length < 10) {
+				setErrors((errors) => [...errors, "Not in word list"]);
+				setTimeout(
+					() =>
+						setErrors((errors) =>
+							[...errors].slice(0, errors.length - 1)
+						),
+					1000
+				);
+			}
 			const row = document.querySelectorAll(`#grid-row-${currRow} > div`);
 			for (let i = 0; i < row?.length; i++) {
 				row[i]?.classList.add("shake");
@@ -218,6 +240,14 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 					<i className="fa-solid fa-bars" />
 				</div>
 				<div className="game-title smaller-title">Wordle</div>
+				<div className="errors">
+					{errors.length > 0 &&
+						errors.map((err, idx) => (
+							<div key={`${err}idx`} className="word-err">
+								{err}
+							</div>
+						))}
+				</div>
 				<div>
 					<i className="fa-solid fa-gear" />
 				</div>

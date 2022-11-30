@@ -61,10 +61,10 @@
 
 .hamburger-menu {
 	box-shadow: rgba(0, 0, 0, 0.15) 3px 5px 5px 0px;
-	max-width: 373px;
+	max-width: 70vw;
 	background-color: white;
 	position: absolute;
-	width: 100%;
+	width: 373px;
 	height: 100%;
 	top: 0px;
 	left: 0px;
@@ -310,4 +310,29 @@ li {
 .keyboard-spacer {
 	max-width: 16px;
 	width: 100%;
+}
+
+.errors {
+	position: absolute;
+	width: 100vw;
+	top: 66px;
+	left: 0;
+}
+/* Error */
+.word-err {
+		margin: auto;
+	position: relative;
+	font-family: "Franklin";
+	font-weight: bold;
+	margin-top: 5px;
+	z-index: 2;
+	font-size: 12px;
+	width: fit-content;
+	word-break: keep-all;
+	white-space: pre;
+	background-color: black;
+	color: white;
+	padding: 10px;
+	border-radius: 4px;
+	box-sizing: border-box;
 }

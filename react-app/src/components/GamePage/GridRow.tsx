@@ -10,25 +10,25 @@ interface Props {
 		[key: string]: string;
 	};
 }
-const GridRow: FC<Props> = ({
-	word,
-	row,
-	currRow,
-	guess,
-	correctWord,
-	usedLetters,
-}) => {
+const GridRow: FC<Props> = ({ word, row, currRow, guess, correctWord }) => {
 	return (
 		<div className="grid-row">
 			{[0, 1, 2, 3, 4].map((idx) => {
 				return (
 					<div
 						className={`grid-cell ${
-							currRow === row && word.length > idx ? "filled" : ""
+							currRow === row && word.length >= idx + 1
+								? "active"
+								: ""
 						} ${
 							guess && correctWord[idx] === guess[idx]
 								? "correct"
-								: ``
+								: `${
+										row < currRow &&
+										correctWord.includes(guess[idx])
+											? "present"
+											: `${row < currRow ? "absent" : ""}`
+								  }`
 						} `}
 					>
 						{currRow === row

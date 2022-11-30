@@ -166,6 +166,25 @@
 	color: white;
 }
 
+.active {
+	border: solid 2px var(--darkest-gray);
+	animation-name: pulse;
+	animation-duration: 50ms;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
 .fa-delete-left {
 	font-size: 24px;
 }

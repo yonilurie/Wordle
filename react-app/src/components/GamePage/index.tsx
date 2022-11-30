@@ -1,6 +1,6 @@
 import "./GamePage.css";
 import GridRow from "./GridRow";
-import { FC, SyntheticEvent, useState, useEffect, useRef } from "react";
+import { FC, useState, useEffect, useRef } from "react";
 import { useEventListener } from "usehooks-ts";
 interface Props {
 	word: string;
@@ -96,7 +96,7 @@ const GamePage: FC<Props> = ({ word }) => {
 	};
 
 	useEventListener("keydown", type, documentRef);
-	
+
 	return (
 		<div className="game-page">
 			{word}

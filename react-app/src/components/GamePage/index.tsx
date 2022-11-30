@@ -87,7 +87,8 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 
 		for (let i = 0; i < 5; i++) {
 			let userChar = userWord[i];
-			if (guessResult[i] === "correct") break;
+			if (guessResult[i] === "correct") continue;
+			console.log(i)
 			if (word.includes(userChar) && possibleLtrs.includes(userChar)) {
 				letterObj[userChar] = "present";
 				guessResult[i] = "present";
@@ -111,7 +112,7 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		setUserWord((userWord) => userWord.substring(0, userWord.length - 1));
 	};
 	useEventListener("keydown", type, documentRef);
-
+	console.log(usedLetters);
 	return (
 		<div className="game-page">
 			<div
@@ -132,7 +133,7 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 				</div>
 			</div>
 			<div className="nav-bar">
-				{word}
+				{/* {word} */}
 				<div
 					className="hamburger-toggle"
 					onClick={() => setShowHamburger((state) => !state)}

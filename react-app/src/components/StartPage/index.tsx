@@ -29,7 +29,7 @@ const StartPage: FC<Props> = ({
 								setShowStartPage(false);
 								setTimeout(() => {
 									setGameOn(true);
-								}, 500);
+								}, 300);
 							}}
 						>
 							Play
@@ -37,11 +37,30 @@ const StartPage: FC<Props> = ({
 					</div>
 				</div>
 				<div className="start-page-four">
-					<div className="todays-date">November, 28, 2022</div>
+					<div className="todays-date">{ new Date().toDateString()}</div>
 
-					<div className="edition">No. 1</div>
 					<div className="start-page-created-by">
 						Created by Yonatan Lurie
+					</div>
+
+					<div className="socials">
+						<a
+							href="https://github.com/yonilurie"
+							target="_blank"
+							rel="noreferrer"
+							className="social-link"
+						>
+							<img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"></img>
+						</a>
+
+						<a
+							href="https://www.linkedin.com/in/yonilurie/"
+							target="_blank"
+							rel="noreferrer"
+							className="social-link"
+						>
+							<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white"></img>
+						</a>
 					</div>
 				</div>
 			</div>

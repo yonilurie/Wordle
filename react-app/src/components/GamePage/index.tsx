@@ -62,12 +62,15 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 	};
 
 	const attemptGuess = (): void => {
+		if (currRow === 7) return;
 		// Will add animation later
 		if (userWord.length < 5) return alert("Too short");
 		// Will add animation later
-
 		if (!isWord(userWord)) return alert("Not a valid word, Try again");
-
+		// Remove focus from keyboard
+		//*Prevents new row from starting with the previous rows last letter
+		document.getElementById("enter")?.focus();
+		document.getElementById("enter")?.blur();
 		//Array to track results of guess
 		//This assists in styling the grid
 		let guessResult: Array<string> = new Array(5).fill("absent");
@@ -88,8 +91,9 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		for (let i = 0; i < 5; i++) {
 			let userChar = userWord[i];
 			if (guessResult[i] === "correct") continue;
-			console.log(i);
 			if (word.includes(userChar) && possibleLtrs.includes(userChar)) {
+				let spliceIdx = possibleLtrs.indexOf(userChar);
+				possibleLtrs.splice(spliceIdx, 1);
 				letterObj[userChar] = "present";
 				guessResult[i] = "present";
 			} else if (!word.includes(userChar)) {
@@ -103,14 +107,19 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		setGuesses((guesses) => [...guesses, guessResult]);
 		setGuessedWords((guessedWords) => [...guessedWords, userWord]);
 		setUserWord("");
-		if (userWord === word) setTimeout(() => alert("congrats"), 1000);
-		else if (guesses.length === 5) alert(`failed, the word was ${word}`);
+		if (userWord === word) setTimeout(() => alert("congrats"), 500);
 	};
 
 	const backSpace = (): void => {
 		if (!userWord.length) return;
 		setUserWord((userWord) => userWord.substring(0, userWord.length - 1));
 	};
+
+	useEffect(() => {
+		if (currRow === 7)
+			setTimeout(() => alert(`failed, the word was ${word}`), 500);
+	}, [currRow]);
+
 	useEventListener("keydown", type, documentRef);
 
 	return (
@@ -124,16 +133,57 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 						showHamburger ? "" : "stowed"
 					}`}
 				>
-					<div
-						className="hamburger-toggle"
-						onClick={() => setShowHamburger(false)}
-					>
-						This is Wordle
+					<div className="hamburger-header">
+						<h2 className="header-title">
+							Created By: Yonatan Lurie
+						</h2>
+						<button
+							className="hamburger-header-toggle"
+							onClick={() => setShowHamburger(false)}
+						>
+							<i className="fa-solid fa-xmark"></i>
+						</button>
+					</div>
+					<div className="technologies">
+						<div>Technologies Used:</div>
+						<div>
+							<img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"></img>
+						</div>
+						<div>
+							<img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"></img>
+						</div>
+
+						<div>
+							<img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"></img>
+							<img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white"></img>
+						</div>
+						<div>
+							<img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"></img>
+							<img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"></img>
+						</div>
+					</div>
+					<div className="socials">
+						<a
+							href="https://github.com/yonilurie"
+							target="_blank"
+							rel="noreferrer"
+							className="social-link"
+						>
+							<img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"></img>
+						</a>
+
+						<a
+							href="https://www.linkedin.com/in/yonilurie/"
+							target="_blank"
+							rel="noreferrer"
+							className="social-link"
+						>
+							<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white"></img>
+						</a>
 					</div>
 				</div>
 			</div>
 			<div className="nav-bar">
-				{/* {word} */}
 				<div
 					className="hamburger-toggle"
 					onClick={() => setShowHamburger((state) => !state)}
@@ -200,9 +250,13 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 					<div className="keyboard-spacer"></div>
 				</div>
 				<div className="keyboard-row">
-					<div className="keyboard-key action" id="enter">
+					<button
+						className="keyboard-key action"
+						id="enter"
+						onClick={attemptGuess}
+					>
 						ENTER
-					</div>
+					</button>
 					{["z", "x", "c", "v", "b", "n", "m"].map((keyboardKey) => (
 						<button
 							className={`keyboard-key ${usedLetters[keyboardKey]}`}
@@ -218,9 +272,9 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 							{keyboardKey.toUpperCase()}
 						</button>
 					))}
-					<div className="keyboard-key action">
+					<button className="keyboard-key action" onClick={backSpace}>
 						<i className="fa-solid fa-delete-left"></i>
-					</div>
+					</button>
 				</div>
 			</div>
 		</div>

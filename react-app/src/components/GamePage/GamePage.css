@@ -71,12 +71,71 @@
 	z-index: 3;
 	box-sizing: border-box;
 	padding: 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
 .hamburger-menu.stowed {
 	left: 500px;
 	left: -373px;
 	transition: 300ms;
+}
+
+.hamburger-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header-title {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 18px;
+	letter-spacing: 1px;
+	font-family: "nytkarnakcondensed";
+}
+
+.hamburger-header-toggle {
+	max-height: 24px;
+	max-width: 24px;
+	border: none;
+	background-color: white;
+	font-size: 24px;
+	cursor: pointer;
+}
+
+.technologies {
+	font-family: "Franklin";
+	display: flex;
+	gap: 5px;
+	flex-direction: column;
+}
+
+.technologies > div {
+	font-weight: bold;
+	font-size: 18px;
+	display: flex;
+	gap: 5px;
+}
+
+.socials {
+	display: flex;
+	gap: 5px;
+	margin-top: 5px;
+}
+
+.social-link {
+	text-decoration: none;
+	color: black;
+}
+.social-link:hover {
+	opacity: 0.8;
+}
+
+li {
+	list-style: none;
 }
 
 /* Wordle board */
@@ -101,7 +160,6 @@
 	max-height: 62px;
 }
 
-
 .grid-cell {
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
 		Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -117,7 +175,6 @@
 	max-width: 62px;
 	min-height: 62px;
 	min-width: 62px;
-	
 }
 
 .grid-cell.correct {

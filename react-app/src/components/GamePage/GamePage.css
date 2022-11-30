@@ -157,7 +157,34 @@ li {
 }
 .grid-row {
 	display: contents;
-	max-height: 62px;
+	/* max-height: 62px; */
+}
+
+.shake {
+	animation-name: shakeX !important;
+	transform: translateX(0px);
+	animation-duration: 200ms !important;
+}
+
+@keyframes shakeX {
+	0% {
+		transform: translateX(-2px);
+	}
+	20% {
+		transform: translateX(2px);
+	}
+	40% {
+		transform: translateX(-2px);
+	}
+	60% {
+		transform: translateX(2px);
+	}
+	80% {
+		transform: translateX(-2px);
+	}
+	100% {
+		transform: translateX(2px);
+	}
 }
 
 .grid-cell {
@@ -236,6 +263,10 @@ li {
 .correct {
 	background-color: var(--green);
 	color: white;
+}
+
+.past {
+	border: solid 2px var(--darkest-gray);
 }
 
 .active {

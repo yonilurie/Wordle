@@ -2,6 +2,7 @@ import "./GamePage.css";
 import GridRow from "./GridRow";
 import { FC, useState, useEffect, useRef } from "react";
 import { useEventListener } from "usehooks-ts";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 interface Props {
 	word: string;
 	isWord: Function;
@@ -16,6 +17,7 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 	const [currRow, setCurrRow] = useState(1);
 	const [guesses, setGuesses] = useState<Array<Array<string>>>([]);
 	const [guessedWords, setGuessedWords] = useState<Array<string>>([]);
+	const [shake, setShake] = useState(false);
 	const [usedLetters, setUsedLetters] = useState<{
 		[key: string]: string;
 	}>({
@@ -47,7 +49,7 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		z: "inactive",
 	});
 
-	const type = (e: { key: any; keyCode: number }): void => {
+	const type = (e: { key: any; keyCode: number }) => {
 		const key = e.key;
 		const keyCode = e.keyCode;
 		const isAlpha =
@@ -61,12 +63,32 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		setUserWord((userWord) => (userWord += key));
 	};
 
-	const attemptGuess = (): void => {
+	const attemptGuess = () => {
 		if (currRow === 7) return;
-		// Will add animation later
-		if (userWord.length < 5) return alert("Too short");
-		// Will add animation later
-		if (!isWord(userWord)) return alert("Not a valid word, Try again");
+		// If word is too short
+		if (userWord.length < 5) {
+			const row = document.querySelectorAll(`#grid-row-${currRow} > div`);
+			for (let i = 0; i < row?.length; i++) {
+				row[i]?.classList.add("shake");
+				row[i]?.classList.remove("active");
+			}
+			for (let i = 0; i < row?.length; i++) {
+				setTimeout(() => row[i]?.classList.remove("shake"), 500);
+			}
+			return;
+		}
+		// if word isnt valid
+		if (!isWord(userWord)) {
+			const row = document.querySelectorAll(`#grid-row-${currRow} > div`);
+			for (let i = 0; i < row?.length; i++) {
+				row[i]?.classList.add("shake");
+				row[i]?.classList.remove("active");
+			}
+			for (let i = 0; i < row?.length; i++) {
+				setTimeout(() => row[i]?.classList.remove("shake"), 500);
+			}
+			return;
+		}
 		// Remove focus from keyboard
 		//*Prevents new row from starting with the previous rows last letter
 		document.getElementById("enter")?.focus();
@@ -116,8 +138,13 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 	};
 
 	useEffect(() => {
-		if (currRow === 7)
-			setTimeout(() => alert(`failed, the word was ${word}`), 500);
+		if (currRow === 7) {
+			const timeout = setTimeout(
+				() => alert(`failed, the word was ${word}`),
+				500
+			);
+			return clearTimeout(timeout);
+		}
 	}, [currRow]);
 
 	useEventListener("keydown", type, documentRef);
@@ -204,6 +231,9 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 							isActiveRow={gridRow === currRow}
 							guessResult={guesses[idx]}
 							guessedWord={guessedWords[idx]}
+							id={gridRow}
+							shake={shake}
+							currRow={currRow}
 						/>
 					))}
 				</div>

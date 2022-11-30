@@ -1,8 +1,37 @@
+@import url(//db.onlinewebfonts.com/c/c5e318af825ba7118f0e432ef4150911?family=Franklin);
+
 :root {
 	--dark-mode-darkest: rgb(18, 18, 19);
 	--light-border: rgb(211, 214, 218);
 	--darker-gray: rgb(211, 214, 218);
 	--darkest-gray: rgb(135, 138, 140);
 	--green: rgb(106, 170, 100);
-	--gold:rgb(201,180,88)
+	--gold: rgb(201, 180, 88);
+}
+
+@font-face {
+	font-family: "nytkarnakcondensed";
+	src: url("./assets/fonts/KarnakPro/otf/KarnakPro-CondensedBlack.otf");
+}
+@font-face {
+	font-family: "nytkarnak";
+	src: url("./assets/fonts/KarnakPro/otf/KarnakPro-Book.otf");
+}
+@font-face {
+	font-family: "Franklin";
+	src: url("//db.onlinewebfonts.com/t/c5e318af825ba7118f0e432ef4150911.eot");
+	src: url("//db.onlinewebfonts.com/t/c5e318af825ba7118f0e432ef4150911.eot?#iefix")
+			format("embedded-opentype"),
+		url("//db.onlinewebfonts.com/t/c5e318af825ba7118f0e432ef4150911.woff2")
+			format("woff2"),
+		url("//db.onlinewebfonts.com/t/c5e318af825ba7118f0e432ef4150911.woff")
+			format("woff"),
+		url("//db.onlinewebfonts.com/t/c5e318af825ba7118f0e432ef4150911.ttf")
+			format("truetype"),
+		url("//db.onlinewebfonts.com/t/c5e318af825ba7118f0e432ef4150911.svg#Franklin")
+			format("svg");
+}
+
+html {
+	overflow-y: hidden;
 }

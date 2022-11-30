@@ -101,18 +101,33 @@
 	max-height: 62px;
 }
 
+
 .grid-cell {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+		Helvetica, Arial, "Lucida Grande", sans-serif;
 	border: solid 2px var(--darker-gray);
 	box-sizing: border-box;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 32px;
+	font-weight: 700;
 	text-transform: uppercase;
 	max-height: 62px;
 	max-width: 62px;
 	min-height: 62px;
 	min-width: 62px;
+	
+}
+
+.grid-cell.correct {
+	border: solid 1px var(--green);
+}
+.grid-cell.absent {
+	border: solid 1px var(--darkest-gray);
+}
+.grid-cell.present {
+	border: solid 1px var(--gold);
 }
 
 /* Keyboard */

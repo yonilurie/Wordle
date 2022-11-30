@@ -47,7 +47,7 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		z: "inactive",
 	});
 
-	const type = (e: { key: any; keyCode: number }) => {
+	const type = (e: { key: any; keyCode: number }): void => {
 		const key = e.key;
 		const keyCode = e.keyCode;
 		const isAlpha =
@@ -61,7 +61,7 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		setUserWord((userWord) => (userWord += key));
 	};
 
-	const attemptGuess = () => {
+	const attemptGuess = (): void => {
 		// Will add animation later
 		if (userWord.length < 5) return alert("Too short");
 		// Will add animation later
@@ -88,7 +88,7 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		for (let i = 0; i < 5; i++) {
 			let userChar = userWord[i];
 			if (guessResult[i] === "correct") continue;
-			console.log(i)
+			console.log(i);
 			if (word.includes(userChar) && possibleLtrs.includes(userChar)) {
 				letterObj[userChar] = "present";
 				guessResult[i] = "present";
@@ -107,12 +107,12 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		else if (guesses.length === 5) alert(`failed, the word was ${word}`);
 	};
 
-	const backSpace = () => {
+	const backSpace = (): void => {
 		if (!userWord.length) return;
 		setUserWord((userWord) => userWord.substring(0, userWord.length - 1));
 	};
 	useEventListener("keydown", type, documentRef);
-	console.log(usedLetters);
+
 	return (
 		<div className="game-page">
 			<div
@@ -166,6 +166,12 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 								className={`keyboard-key ${usedLetters[keyboardKey]}`}
 								key={keyboardKey}
 								data-key={keyboardKey}
+								onClick={() => {
+									type({
+										key: keyboardKey,
+										keyCode: keyboardKey.charCodeAt(0),
+									});
+								}}
 							>
 								{keyboardKey.toUpperCase()}
 							</button>
@@ -180,6 +186,12 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 								className={`keyboard-key ${usedLetters[keyboardKey]}`}
 								key={keyboardKey}
 								data-key={keyboardKey}
+								onClick={() => {
+									type({
+										key: keyboardKey,
+										keyCode: keyboardKey.charCodeAt(0),
+									});
+								}}
 							>
 								{keyboardKey.toUpperCase()}
 							</button>
@@ -196,6 +208,12 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 							className={`keyboard-key ${usedLetters[keyboardKey]}`}
 							key={keyboardKey}
 							data-key={keyboardKey}
+							onClick={() => {
+								type({
+									key: keyboardKey,
+									keyCode: keyboardKey.charCodeAt(0),
+								});
+							}}
 						>
 							{keyboardKey.toUpperCase()}
 						</button>

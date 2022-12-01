@@ -32,7 +32,13 @@ function App() {
 					setGameOn={setGameOn}
 				></StartPage>
 			)}
-			{gameOn && <GamePage word={word} isWord={isWord}></GamePage>}
+			{gameOn && (
+				<GamePage
+					word={word}
+					isWord={isWord}
+					getWord={getWord}
+				></GamePage>
+			)}
 		</div>
 	);
 }

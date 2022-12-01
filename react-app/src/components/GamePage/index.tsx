@@ -6,9 +6,10 @@ import { faL } from "@fortawesome/free-solid-svg-icons";
 interface Props {
 	word: string;
 	isWord: Function;
+	getWord: Function;
 }
 
-const GamePage: FC<Props> = ({ word, isWord }) => {
+const GamePage: FC<Props> = ({ word, isWord, getWord }) => {
 	const documentRef = useRef<Document>(document);
 	const gridRef = useRef(null);
 	const [showHamburger, setShowHamburger] = useState(false);
@@ -195,11 +196,21 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 	};
 
 	useEffect(() => {
-		if (currRow === 7) {
+		if (victory === null && currRow === 7) {
 			setVictory(false);
 		}
 	}, [currRow]);
 
+	const resetGame = () => {
+		setUserWord("");
+		setVictory(null);
+		setErrors([]);
+		setCurrRow(1);
+		setGuesses([]);
+		setGuessedWords([]);
+		resetUsedLetters();
+		getWord();
+	};
 	useEventListener("keydown", type, documentRef);
 
 	return (
@@ -291,34 +302,12 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 							</div>
 						))}
 					{victory === true && (
-						<div
-							className="victory-box"
-							onClick={() => {
-								setUserWord("");
-								setVictory(null);
-								setErrors([]);
-								setCurrRow(1);
-								setGuesses([]);
-								setGuessedWords([]);
-								resetUsedLetters();
-							}}
-						>
+						<div className="victory-box" onClick={resetGame}>
 							Congrats! Click to play again.
 						</div>
 					)}
 					{victory === false && (
-						<div
-							className="victory-box"
-							onClick={() => {
-								setUserWord("");
-								setVictory(null);
-								setErrors([]);
-								setCurrRow(1);
-								setGuesses([]);
-								setGuessedWords([]);
-								resetUsedLetters();
-							}}
-						>
+						<div className="victory-box" onClick={resetGame}>
 							<p>{` You lost! The correct word was ${word},`}</p>
 							<p>{`Click to play again`}</p>
 						</div>

@@ -273,6 +273,8 @@ li {
 	display: flex;
 	flex-direction: column;
 	row-gap: 10px;
+	padding: 5px;
+	box-sizing: border-box;
 }
 
 .keyboard-row {
@@ -412,9 +414,12 @@ li {
 	cursor: pointer;
 }
 
-
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 800px) {
 	.keyboard-key {
 		max-width: 32px;
+	}
+	.game-page {
+		justify-content: initial;
+		gap: 5px;
 	}
 }

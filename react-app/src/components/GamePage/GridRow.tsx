@@ -29,7 +29,7 @@ const GridRow: FC<Props> = ({
 
 			const timeout = setTimeout(
 				() => row[i]?.classList.remove("active"),
-				0
+				100
 			);
 			return () => clearTimeout(timeout);
 		}

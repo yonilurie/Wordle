@@ -11,6 +11,7 @@
 	--gold: rgb(201, 180, 88);
 	--dark-gold: rgb(181, 159, 59);
 	--dark-mode-green: rgb(83, 141, 78);
+	--background-beige: rgb(227, 227, 225);
 }
 
 @font-face {
@@ -43,4 +44,3 @@ body,
 	height: 100%;
 	overflow: hidden;
 }
-

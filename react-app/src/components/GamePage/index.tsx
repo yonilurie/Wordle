@@ -1,10 +1,10 @@
-import "./GamePage.css";
-import GridRow from "./GridRow";
-import Hamburger from "./Hamburger";
 import { FC, useState, useEffect, useRef } from "react";
 import { useEventListener } from "usehooks-ts";
+import GridRow from "./GridRow";
+import Hamburger from "./Hamburger";
 import Navbar from "./Navbar";
 import Keyboard from "./Keyboard";
+import "./GamePage.css";
 
 interface Props {
 	word: string;
@@ -50,7 +50,6 @@ const GamePage: FC<Props> = ({ word, isWord, getWord }) => {
 	const [currRow, setCurrRow] = useState<number>(1);
 	const [guesses, setGuesses] = useState<Array<Array<string>>>([]);
 	const [guessedWords, setGuessedWords] = useState<Array<string>>([]);
-
 	const [darkMode, setDarkMode] = useState<boolean>(false);
 	const [usedLetters, setUsedLetters] = useState<{
 		[key: string]: string;

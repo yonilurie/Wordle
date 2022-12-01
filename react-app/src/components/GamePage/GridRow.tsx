@@ -19,16 +19,15 @@ const GridRow: FC<Props> = ({
 	darkMode,
 }) => {
 	useEffect(() => {
-		if (usersGuess.length && isActiveRow) {
-			const row = document.querySelectorAll(`#grid-row-${currRow} > div`);
-			let i = usersGuess.length - 1;
-			row[i]?.classList.add("active");
-			const timeout = setTimeout(
-				() => row[i]?.classList.remove("active"),
-				100
-			);
-			return () => clearTimeout(timeout);
-		}
+		if (!usersGuess.length || !isActiveRow) return;
+		const row = document.querySelectorAll(`#grid-row-${currRow} > div`);
+		let i = usersGuess.length - 1;
+		row[i]?.classList.add("active");
+		const timeout = setTimeout(
+			() => row[i]?.classList.remove("active"),
+			100
+		);
+		return () => clearTimeout(timeout);
 	}, [usersGuess]);
 
 	return (

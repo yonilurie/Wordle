@@ -2,7 +2,7 @@
 .game-page {
 	width: 100%;
 	height: 100%;
-	background-color: rgb(255, 255, 255);
+	background-color: white;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -16,7 +16,6 @@
 }
 
 /* Nav Bar */
-
 .nav-bar {
 	height: 66px;
 	width: 100%;
@@ -34,6 +33,10 @@
 
 .hamburger-toggle {
 	width: fit-content;
+	cursor: pointer;
+}
+.fa-lightbulb{
+	cursor: pointer;
 }
 
 .fa-bars::before {
@@ -53,6 +56,18 @@
 .fa-bars.darkmode::before {
 	color: white;
 }
+.fa-xmark{
+	color: black;
+}
+.hamburger-header-toggle{
+	margin: 0px;
+	padding: 0px
+
+}
+.hamburger-header-toggle.darkmode 
+> i {
+	color: white ;
+}
 
 .game-title.smaller-title {
 	font-size: 36px;
@@ -63,7 +78,6 @@
 }
 
 /* Hamburger menu */
-
 .hamburger.stowed {
 	left: -100vw;
 	transition: 300ms;
@@ -189,7 +203,6 @@ li {
 
 .grid-row {
 	display: contents;
-	/* max-height: 62px; */
 }
 
 .shake {
@@ -378,6 +391,7 @@ li {
 	top: 66px;
 	left: 0;
 }
+
 /* Error */
 .word-err {
 	margin: auto;
@@ -398,7 +412,6 @@ li {
 }
 
 /* Victory */
-
 .victory-box {
 	margin: auto;
 	position: relative;
@@ -431,11 +444,9 @@ li {
 	.hamburger-menu {
 		width: 100vw;
 		max-width: 100vw;
-		/* max-height: calc(100vh - 35px); */
 	}
 	.hamburger {
 		top: 35px;
-		/* max-height: calc(100vh - 35px); */
 	}
 	.nav-bar {
 		max-height: 40px;

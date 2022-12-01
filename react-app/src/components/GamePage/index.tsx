@@ -19,6 +19,7 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 	const [guesses, setGuesses] = useState<Array<Array<string>>>([]);
 	const [guessedWords, setGuessedWords] = useState<Array<string>>([]);
 	const [shake, setShake] = useState(false);
+	const [darkMode, setDarkMode] = useState(false);
 	const [usedLetters, setUsedLetters] = useState<{
 		[key: string]: string;
 	}>({
@@ -172,22 +173,24 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 	useEventListener("keydown", type, documentRef);
 
 	return (
-		<div className="game-page">
+		<div className={`game-page ${darkMode ? "darkmode" : ""}`}>
 			<div
-				className={`hamburger ${showHamburger ? "" : "stowed"}`}
+				className={`hamburger ${showHamburger ? "" : "stowed"} `}
 				onClick={() => setShowHamburger(false)}
 			>
 				<div
 					className={`hamburger-menu ${
 						showHamburger ? "" : "stowed"
-					}`}
+					} ${darkMode ? "darkmode" : ""}`}
 				>
 					<div className="hamburger-header">
 						<h2 className="header-title">
 							Created By: Yonatan Lurie
 						</h2>
 						<button
-							className="hamburger-header-toggle"
+							className={`hamburger-header-toggle ${
+								darkMode ? "darkmode" : ""
+							}`}
 							onClick={() => setShowHamburger(false)}
 						>
 							<i className="fa-solid fa-xmark"></i>
@@ -232,24 +235,38 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 					</div>
 				</div>
 			</div>
-			<div className="nav-bar">
+			<div className={`nav-bar ${darkMode ? "darkmode" : ""}`}>
 				<div
 					className="hamburger-toggle"
 					onClick={() => setShowHamburger((state) => !state)}
 				>
-					<i className="fa-solid fa-bars" />
+					<i
+						className={`fa-solid fa-bars ${
+							darkMode ? "darkmode" : ""
+						}`}
+					/>
 				</div>
-				<div className="game-title smaller-title">Wordle</div>
+				<div
+					className={`game-title smaller-title ${
+						darkMode ? "darkmode" : ""
+					}`}
+				>
+					Wordle
+				</div>
 				<div className="errors">
 					{errors.length > 0 &&
 						errors.map((err, idx) => (
-							<div key={`${err}idx`} className="word-err">
+							<div key={`${err}${idx}`} className="word-err">
 								{err}
 							</div>
 						))}
 				</div>
-				<div>
-					<i className="fa-solid fa-gear" />
+				<div onClick={() => setDarkMode((darkMode) => !darkMode)}>
+					<i
+						className={`fa-regular fa-lightbulb ${
+							darkMode ? "darkmode" : ""
+						}`}
+					/>
 				</div>
 			</div>
 			<div className="wordle-container">
@@ -264,6 +281,7 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 							id={gridRow}
 							shake={shake}
 							currRow={currRow}
+							darkMode={darkMode}
 						/>
 					))}
 				</div>
@@ -273,7 +291,9 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 					{["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"].map(
 						(keyboardKey) => (
 							<button
-								className={`keyboard-key ${usedLetters[keyboardKey]}`}
+								className={`keyboard-key ${
+									usedLetters[keyboardKey]
+								} ${darkMode ? "darkmode" : ""}`}
 								key={keyboardKey}
 								data-key={keyboardKey}
 								onClick={() => {
@@ -293,7 +313,9 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 					{["a", "s", "d", "f", "g", "h", "j", "k", "l"].map(
 						(keyboardKey) => (
 							<button
-								className={`keyboard-key ${usedLetters[keyboardKey]}`}
+								className={`keyboard-key ${
+									usedLetters[keyboardKey]
+								} ${darkMode ? "darkmode" : ""}`}
 								key={keyboardKey}
 								data-key={keyboardKey}
 								onClick={() => {
@@ -311,7 +333,9 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 				</div>
 				<div className="keyboard-row">
 					<button
-						className="keyboard-key action"
+						className={`keyboard-key action ${
+							darkMode ? "darkmode" : ""
+						}`}
 						id="enter"
 						onClick={attemptGuess}
 					>
@@ -319,7 +343,9 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 					</button>
 					{["z", "x", "c", "v", "b", "n", "m"].map((keyboardKey) => (
 						<button
-							className={`keyboard-key ${usedLetters[keyboardKey]}`}
+							className={`keyboard-key ${
+								usedLetters[keyboardKey]
+							} ${darkMode ? "darkmode" : ""}`}
 							key={keyboardKey}
 							data-key={keyboardKey}
 							onClick={() => {
@@ -332,7 +358,12 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 							{keyboardKey.toUpperCase()}
 						</button>
 					))}
-					<button className="keyboard-key action" onClick={backSpace}>
+					<button
+						className={`keyboard-key action ${
+							darkMode ? "darkmode" : ""
+						}`}
+						onClick={backSpace}
+					>
 						<i className="fa-solid fa-delete-left"></i>
 					</button>
 				</div>

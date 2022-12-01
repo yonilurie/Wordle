@@ -5,8 +5,12 @@
 	--light-border: rgb(211, 214, 218);
 	--darker-gray: rgb(211, 214, 218);
 	--darkest-gray: rgb(135, 138, 140);
+	--mid-gray: rgb(128, 131, 132);
+	--dark-mode-grey: rgb(58, 58, 60);
 	--green: rgb(106, 170, 100);
 	--gold: rgb(201, 180, 88);
+	--dark-gold: rgb(181, 159, 59);
+	--dark-mode-green: rgb(83,141,78);
 }
 
 @font-face {

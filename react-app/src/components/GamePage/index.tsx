@@ -14,6 +14,7 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 	const [showHamburger, setShowHamburger] = useState(false);
 
 	const [userWord, setUserWord] = useState("");
+	const [victory, setVictory] = useState<null | boolean>(null);
 	const [errors, setErrors] = useState<Array<string>>([]);
 	const [currRow, setCurrRow] = useState(1);
 	const [guesses, setGuesses] = useState<Array<Array<string>>>([]);
@@ -152,7 +153,9 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		setGuesses((guesses) => [...guesses, guessResult]);
 		setGuessedWords((guessedWords) => [...guessedWords, userWord]);
 		setUserWord("");
-		if (userWord === word) setTimeout(() => alert("congrats"), 500);
+		if (userWord === word) {
+			setVictory(true);
+		}
 	};
 
 	const backSpace = (): void => {
@@ -160,13 +163,40 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 		setUserWord((userWord) => userWord.substring(0, userWord.length - 1));
 	};
 
+	const resetUsedLetters = () => {
+		setUsedLetters({
+			a: "inactive",
+			b: "inactive",
+			c: "inactive",
+			d: "inactive",
+			e: "inactive",
+			f: "inactive",
+			g: "inactive",
+			h: "inactive",
+			i: "inactive",
+			j: "inactive",
+			k: "inactive",
+			l: "inactive",
+			m: "inactive",
+			n: "inactive",
+			o: "inactive",
+			p: "inactive",
+			q: "inactive",
+			r: "inactive",
+			s: "inactive",
+			t: "inactive",
+			u: "inactive",
+			v: "inactive",
+			w: "inactive",
+			x: "inactive",
+			y: "inactive",
+			z: "inactive",
+		});
+	};
+
 	useEffect(() => {
 		if (currRow === 7) {
-			const timeout = setTimeout(
-				() => alert(`failed, the word was ${word}`),
-				500
-			);
-			return clearTimeout(timeout);
+			setVictory(false);
 		}
 	}, [currRow]);
 
@@ -260,6 +290,39 @@ const GamePage: FC<Props> = ({ word, isWord }) => {
 								{err}
 							</div>
 						))}
+					{victory === true && (
+						<div
+							className="victory-box"
+							onClick={() => {
+								setUserWord("");
+								setVictory(null);
+								setErrors([]);
+								setCurrRow(1);
+								setGuesses([]);
+								setGuessedWords([]);
+								resetUsedLetters();
+							}}
+						>
+							Congrats! Click to play again.
+						</div>
+					)}
+					{victory === false && (
+						<div
+							className="victory-box"
+							onClick={() => {
+								setUserWord("");
+								setVictory(null);
+								setErrors([]);
+								setCurrRow(1);
+								setGuesses([]);
+								setGuessedWords([]);
+								resetUsedLetters();
+							}}
+						>
+							<p>{` You lost! The correct word was ${word},`}</p>
+							<p>{`Click to play again`}</p>
+						</div>
+					)}
 				</div>
 				<div onClick={() => setDarkMode((darkMode) => !darkMode)}>
 					<i

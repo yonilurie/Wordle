@@ -19,6 +19,7 @@ const StartPage: FC<Props> = ({
 			setGameOn(true);
 		}, 300);
 	};
+	document.documentElement.style.backgroundColor = "rgb(227, 227, 225)";
 	return (
 		<div className={`start-page ${showStartPage ? "" : "hidden"}`}>
 			<div className="start-page-content">

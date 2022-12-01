@@ -6,7 +6,6 @@ interface Props {
 	usersGuess: string;
 	guessedWord: string;
 	id: number;
-	shake: boolean;
 	currRow: number;
 	darkMode: boolean;
 }
@@ -16,7 +15,6 @@ const GridRow: FC<Props> = ({
 	isActiveRow,
 	guessedWord,
 	id,
-	shake,
 	currRow,
 	darkMode,
 }) => {
@@ -24,9 +22,7 @@ const GridRow: FC<Props> = ({
 		if (usersGuess.length && isActiveRow) {
 			const row = document.querySelectorAll(`#grid-row-${currRow} > div`);
 			let i = usersGuess.length - 1;
-
 			row[i]?.classList.add("active");
-
 			const timeout = setTimeout(
 				() => row[i]?.classList.remove("active"),
 				100
@@ -44,9 +40,7 @@ const GridRow: FC<Props> = ({
 						isActiveRow && usersGuess.length > idx ? "past" : ""
 					} ${
 						guessResult && guessResult[idx] ? guessResult[idx] : ""
-					}${shake && isActiveRow ? "past" : ""} ${
-						darkMode ? "darkmode" : ""
-					}`}
+					} ${darkMode ? "darkmode" : ""}`}
 				>
 					{isActiveRow
 						? usersGuess[idx]

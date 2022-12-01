@@ -11,7 +11,7 @@ function App() {
 
 	useEffect(() => {
 		if (!word) getWord();
-	}, []);
+	}, [word]);
 
 	const getWord = async (): Promise<void> => {
 		await fetch("./assets/words");
@@ -25,19 +25,18 @@ function App() {
 
 	return (
 		<div className="App">
-			{!gameOn && (
-				<StartPage
-					setShowStartPage={setShowStartPage}
-					showStartPage={showStartPage}
-					setGameOn={setGameOn}
-				></StartPage>
-			)}
-			{gameOn && (
+			{gameOn ? (
 				<GamePage
 					word={word}
 					isWord={isWord}
 					getWord={getWord}
 				></GamePage>
+			) : (
+				<StartPage
+					setShowStartPage={setShowStartPage}
+					showStartPage={showStartPage}
+					setGameOn={setGameOn}
+				></StartPage>
 			)}
 		</div>
 	);

@@ -411,3 +411,10 @@ li {
 	text-align: center;
 	cursor: pointer;
 }
+
+
+@media screen and (max-width: 1000px) {
+	.keyboard-key {
+		max-width: 32px;
+	}
+}

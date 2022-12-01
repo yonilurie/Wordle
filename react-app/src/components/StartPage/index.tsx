@@ -15,9 +15,7 @@ const StartPage: FC<Props> = ({
 	// Transition from home page to game
 	const transition = () => {
 		setShowStartPage(false);
-		setTimeout(() => {
-			setGameOn(true);
-		}, 300);
+		setTimeout(() => setGameOn(true), 300);
 	};
 	document.documentElement.style.backgroundColor = "var(--background-beige)";
 	return (

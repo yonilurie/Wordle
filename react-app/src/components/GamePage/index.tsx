@@ -119,12 +119,10 @@ const GamePage: FC<Props> = ({ word, isWord, getWord }) => {
 	//Handle error with user word input
 	const errorHandle = (message: string) => {
 		if (errors.length >= 10) return;
+		// Add error
 		setErrors((errors) => [...errors, message]);
-		setTimeout(
-			() =>
-				setErrors((errors) => [...errors].slice(0, errors.length - 1)),
-			1000
-		);
+		// Remove last added error afte one seconds
+		setTimeout(() => setErrors((e) => [...e].slice(0, e.length - 1)), 1000);
 		const row = document.querySelectorAll(`#grid-row-${currRow} > div`);
 		for (let i = 0; i < row.length; i++) {
 			row[i]?.classList.add("shake");
@@ -133,7 +131,6 @@ const GamePage: FC<Props> = ({ word, isWord, getWord }) => {
 		for (let i = 0; i < row.length; i++) {
 			setTimeout(() => row[i]?.classList.remove("shake"), 500);
 		}
-		return;
 	};
 
 	//Delete a character
@@ -155,9 +152,20 @@ const GamePage: FC<Props> = ({ word, isWord, getWord }) => {
 		resetUsedLetters();
 		getWord();
 	};
+
 	useEffect(() => {
-		if (victory === null && currRow === 7) setVictory(false);
+		if (victory !== null || currRow !== 7) return;
+		setVictory(false);
 	}, [currRow]);
+
+	useEffect(() => {
+		if (darkMode) {
+			document.documentElement.style.backgroundColor =
+				"var(--dark-mode-darkest)";
+		} else {
+			document.documentElement.style.backgroundColor = "white";
+		}
+	}, [darkMode]);
 
 	useEventListener("keydown", type, documentRef);
 

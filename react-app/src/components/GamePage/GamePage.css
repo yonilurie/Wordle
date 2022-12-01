@@ -8,6 +8,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
+	box-sizing: border-box;
 }
 
 .game-page.darkmode {
@@ -289,6 +290,7 @@ li {
 	border: none;
 	background-color: var(--darker-gray);
 	border-radius: 4px;
+	color: black;
 	height: 100%;
 	width: 100%;
 	max-width: 44px;
@@ -296,6 +298,9 @@ li {
 	font-weight: 700;
 	cursor: pointer;
 	font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .keyboard-key.darkmode:not(.present, .absent, .correct) {
@@ -417,9 +422,51 @@ li {
 @media screen and (max-width: 800px) {
 	.keyboard-key {
 		max-width: 32px;
+		max-height: 58px;
+		height: 58px;
 	}
 	.game-page {
-		justify-content: initial;
 		gap: 5px;
+	}
+	.hamburger-menu {
+		width: 100vw;
+		max-width: 100vw;
+		/* max-height: calc(100vh - 35px); */
+	}
+	.hamburger {
+		top: 35px;
+		/* max-height: calc(100vh - 35px); */
+	}
+	.nav-bar {
+		max-height: 40px;
+	}
+	.spacer {
+		max-width: 16px;
+	}
+	.keyboard-container {
+		margin: 0px 8px;
+		padding: 0px 8px;
+		gap: 0px;
+	}
+	.keyboard-key.action {
+		max-width: 47px;
+		font-size: 12px;
+	}
+
+	.keyboard-row {
+		margin-bottom: 8px;
+	}
+	.smaller-title {
+		width: 100%;
+		padding-left: 15px;
+		box-sizing: border-box;
+		font-size: 28px !important;
+		display: flex;
+		align-items: center;
+	}
+
+	.fa-bars::before,
+	.fa-lightbulb::before {
+		font-size: 20px;
 	}
 }

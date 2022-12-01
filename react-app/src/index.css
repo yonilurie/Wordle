@@ -10,7 +10,7 @@
 	--green: rgb(106, 170, 100);
 	--gold: rgb(201, 180, 88);
 	--dark-gold: rgb(181, 159, 59);
-	--dark-mode-green: rgb(83,141,78);
+	--dark-mode-green: rgb(83, 141, 78);
 }
 
 @font-face {
@@ -36,6 +36,11 @@
 			format("svg");
 }
 
-html {
-	overflow-y: hidden;
+html,
+body,
+#root,
+.App {
+	height: 100%;
+	overflow: hidden;
 }
+

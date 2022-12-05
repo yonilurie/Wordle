@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import StartPage from "./components/StartPage";
 import GamePage from "./components/GamePage";
 import words from "./words.js";
+import cleanWords from "./cleanWords";
 import "./App.css";
 
 function App() {
@@ -13,10 +14,9 @@ function App() {
 		if (!word) getWord();
 	}, [word]);
 
-	const getWord = async (): Promise<void> => {
-		await fetch("./assets/words");
-		let randomNum = Math.floor(Math.random() * words.length);
-		setWord(words[randomNum]);
+	const getWord = (): void => {
+		let randomNum = Math.floor(Math.random() * cleanWords.length);
+		setWord(cleanWords[randomNum]);
 	};
 
 	const isWord = (word: string): boolean => {

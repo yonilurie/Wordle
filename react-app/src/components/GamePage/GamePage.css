@@ -35,7 +35,7 @@
 	width: fit-content;
 	cursor: pointer;
 }
-.fa-lightbulb{
+.fa-lightbulb {
 	cursor: pointer;
 }
 
@@ -56,17 +56,15 @@
 .fa-bars.darkmode::before {
 	color: white;
 }
-.fa-xmark{
+.fa-xmark {
 	color: black;
 }
-.hamburger-header-toggle{
+.hamburger-header-toggle {
 	margin: 0px;
-	padding: 0px
-
+	padding: 0px;
 }
-.hamburger-header-toggle.darkmode 
-> i {
-	color: white ;
+.hamburger-header-toggle.darkmode > i {
+	color: white;
 }
 
 .game-title.smaller-title {
@@ -194,8 +192,10 @@ li {
 .wordle-grid {
 	display: grid;
 	grid-gap: 5px;
-	height: 400px;
-	width: 350px;
+	max-height: 400px;
+	max-width: 350px;
+	height: 100%;
+	width: 100%;
 	padding: 10px;
 	box-sizing: border-box;
 	grid-template-columns: repeat(5, 1fr);
@@ -433,11 +433,10 @@ li {
 }
 
 @media screen and (max-width: 800px) {
-	.keyboard-key {
-		max-width: 32px;
-		max-height: 58px;
-		height: 58px;
+	.wordle-grid {
+		grid-gap: 5px;
 	}
+
 	.game-page {
 		gap: 5px;
 	}
@@ -479,5 +478,49 @@ li {
 	.fa-bars::before,
 	.fa-lightbulb::before {
 		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.keyboard-key {
+		max-width: 35px;
+		max-height: 58px;
+		height: 58px;
+	}
+}
+
+@media screen and (max-height: 670px) {
+	.keyboard-key {
+		max-width: 30px;
+		max-height: 58px;
+		height: 58px;
+	}
+}
+
+@media screen and (max-height: 660px) {
+	.grid-cell {
+		max-height: 47px;
+		max-width: 47px;
+		min-height: 47px;
+		min-width: 47px;
+	}
+	.keyboard-key {
+		max-width: 30px;
+		max-height: 58px;
+		height: 58px;
+	}
+}
+
+@media screen and (max-width: 350px) {
+	.grid-cell {
+		max-height: 47px;
+		max-width: 47px;
+		min-height: 47px;
+		min-width: 47px;
+	}
+	.keyboard-key {
+		max-width: 25px;
+		max-height: 58px;
+		height: 58px;
 	}
 }

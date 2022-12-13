@@ -1,5 +1,11 @@
 # New York Times Wordle Clone
 ## [Deployed Application](https://nyt-wordle-clone.netlify.app/)
+This is a clone of the New York Times Wordle game.
+
+Users have 6 guesses to guess a 5 letter word. As they guess they will be provided with feedback on whether or not their guesses are accurate.
+* A green letter on a guessed word means the letter is in the correct place.
+* A gold letter means that the guessed letter is in the word, but not in that location.
+* A grey letter means that the letter is not present in the word at all.
 
 
 

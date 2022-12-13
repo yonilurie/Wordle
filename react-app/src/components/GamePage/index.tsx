@@ -4,6 +4,7 @@ import GridRow from "./GridRow";
 import Hamburger from "./Hamburger";
 import Navbar from "./Navbar";
 import Keyboard from "./Keyboard";
+import HowToPlay from "./HowToPlay";
 import "./GamePage.css";
 
 interface Props {
@@ -44,6 +45,7 @@ const GamePage: FC<Props> = ({ word, isWord, getWord }) => {
 	const documentRef = useRef<Document>(document);
 	const gridRef = useRef(null);
 	const [showHamburger, setShowHamburger] = useState<boolean>(false);
+	const [showHelp, setShowHelp] = useState<boolean>(false);
 	const [userWord, setUserWord] = useState<string>("");
 	const [victory, setVictory] = useState<null | boolean>(null);
 	const [errors, setErrors] = useState<Array<string>>([]);
@@ -183,6 +185,7 @@ const GamePage: FC<Props> = ({ word, isWord, getWord }) => {
 				resetGame={resetGame}
 				setShowHamburger={setShowHamburger}
 				word={word}
+				setShowHelp={setShowHelp}
 			></Navbar>
 			<div className="wordle-container">
 				<div className="wordle-grid" ref={gridRef}>
@@ -207,6 +210,14 @@ const GamePage: FC<Props> = ({ word, isWord, getWord }) => {
 				backSpace={backSpace}
 				attemptGuess={attemptGuess}
 			></Keyboard>
+
+			{showHelp && (
+				<HowToPlay
+					showHelp={showHelp}
+					setShowHelp={setShowHelp}
+					darkMode={darkMode}
+				></HowToPlay>
+			)}
 		</div>
 	);
 };

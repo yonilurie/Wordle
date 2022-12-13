@@ -7,6 +7,7 @@ interface Props {
 	resetGame: Function;
 	setShowHamburger: Function;
 	word: string;
+	setShowHelp: Function;
 }
 
 const Navbar: FC<Props> = ({
@@ -17,6 +18,7 @@ const Navbar: FC<Props> = ({
 	resetGame,
 	setShowHamburger,
 	word,
+	setShowHelp,
 }) => {
 	return (
 		<div className={`nav-bar ${darkMode ? "darkmode" : ""}`}>
@@ -54,12 +56,21 @@ const Navbar: FC<Props> = ({
 					</div>
 				)}
 			</div>
-			<div onClick={() => setDarkMode((state: boolean) => !state)}>
-				<i
-					className={`fa-regular fa-lightbulb ${
-						darkMode ? "darkmode" : ""
-					}`}
-				/>
+			<div className="nav-bar-right-options">
+				<div onClick={() => setShowHelp(true)}>
+					<i
+						className={`fa-regular fa-circle-question ${
+							darkMode ? "darkmode" : ""
+						}`}
+					></i>
+				</div>
+				<div onClick={() => setDarkMode((state: boolean) => !state)}>
+					<i
+						className={`fa-regular fa-lightbulb ${
+							darkMode ? "darkmode" : ""
+						}`}
+					/>
+				</div>
 			</div>
 		</div>
 	);

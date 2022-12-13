@@ -35,6 +35,22 @@
 	width: fit-content;
 	cursor: pointer;
 }
+
+.nav-bar-right-options {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.fa-circle-question::before {
+	font-size: 30px;
+}
+
+.fa-circle-question.darkmode::before {
+	color: white;
+}
+
 .fa-lightbulb {
 	cursor: pointer;
 }
@@ -430,6 +446,154 @@ li {
 	box-sizing: border-box;
 	text-align: center;
 	cursor: pointer;
+}
+
+/* How to Play modal */
+
+.how-to-overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.how-to-overlay.darkmode {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.how-to-modal {
+	background-color: white;
+	max-height: 90%;
+	padding: 32px;
+	box-shadow: 0 4px 23px 0 rgb(0 0 0 / 20%);
+	border-radius: 8px;
+	max-width: 90%;
+	box-sizing: border-box;
+	width: 560px;
+	position: relative;
+	align-self: center;
+	justify-self: center;
+	top: 100%;
+	transition: top 0.3s ease-in-out;
+}
+.how-to-modal.show-help {
+	top: 0%;
+}
+
+.how-to-modal.darkmode {
+	background-color: var(--dark-mode-darkest);
+	color: white;
+}
+
+.how-to-exit {
+	position: absolute;
+	right: 30px;
+	top: 30px;
+	outline: none;
+	border: none;
+	background-color: white;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+.how-to-exit.darkmode {
+	background-color: var(--dark-mode-darkest);
+}
+
+.fa-circle-question {
+	cursor: pointer;
+}
+
+.how-to-exit.darkmode > i {
+	color: white;
+}
+
+.how-to-title {
+	font-family: nytkarnakcondensed;
+	letter-spacing: 1px;
+}
+
+.how-to-subtitle {
+	font-family: nytkarnak;
+	font-size: 20px;
+}
+
+.how-to-list {
+	font-family: "Franklin";
+}
+.how-to-list > li {
+	font-size: 16px;
+	list-style: initial;
+	margin-bottom: 4px;
+}
+
+.how-to-weary,
+.how-to-pills,
+.how-to-vague {
+	display: flex;
+	gap: 5px;
+}
+
+.how-to-example > p {
+	font-family: "Franklin";
+}
+
+.how-to-weary > div,
+.how-to-pills > div,
+.how-to-vague > div {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+		Helvetica, Arial, "Lucida Grande", sans-serif;
+	border: solid 2px black;
+	padding: 5px;
+	box-sizing: border-box;
+	width: 33px;
+	height: 33px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	font-size: 25.6px;
+}
+
+.how-to-weary.darkmode > div,
+.how-to-pills.darkmode > div,
+.how-to-vague.darkmode > div {
+	border: solid 1px var(--dark-mode-grey);
+}
+
+.weary-green {
+	background-color: var(--green);
+	color: white;
+	border: 0px;
+	border: none !important;
+	transition: transform 0.8s;
+	transform-style: preserve-3d;
+	transform: rotateX(-360deg);
+}
+
+.pills-gold {
+	background-color: var(--gold);
+	color: white;
+	border: none !important;
+}
+
+.vague-grey {
+	background-color: var(--mid-gray);
+	color: white;
+	border: none !important;
+}
+
+.how-to-line {
+	border: solid 1px var(--light-border);
+	margin: 20px 0px;
+}
+
+.how-to-created-by {
+	font-family: "Franklin";
 }
 
 @media screen and (max-width: 800px) {

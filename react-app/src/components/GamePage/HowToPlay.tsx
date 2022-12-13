@@ -37,12 +37,11 @@ const HowToPlay: FC<Props> = ({ showHelp, setShowHelp, darkMode }) => {
 					<li>Each guess must be a valid 5-letter word.</li>
 					<li>
 						The color of the tiles will change to show how close
-						your guess was to the word
+						your guess was to the word.
 					</li>
 				</ul>
 				<div className="how-to-examples">
-					<p>Examples</p>
-
+					<div className="strong-example">Examples</div>
 					<div className="how-to-example">
 						<div
 							className={`how-to-weary ${

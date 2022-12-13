@@ -467,6 +467,7 @@ li {
 
 .how-to-modal {
 	background-color: white;
+	overflow-y: scroll;
 	max-height: 90%;
 	padding: 32px;
 	box-shadow: 0 4px 23px 0 rgb(0 0 0 / 20%);
@@ -596,6 +597,12 @@ li {
 	font-family: "Franklin";
 }
 
+.strong-example {
+	font-family: "Franklin";
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
 @media screen and (max-width: 800px) {
 	.wordle-grid {
 		grid-gap: 5px;
@@ -640,7 +647,8 @@ li {
 	}
 
 	.fa-bars::before,
-	.fa-lightbulb::before {
+	.fa-lightbulb::before,
+	.fa-circle-question::before {
 		font-size: 20px;
 	}
 }

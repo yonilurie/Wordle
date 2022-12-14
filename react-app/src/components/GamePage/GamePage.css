@@ -68,11 +68,13 @@
 .fa-bars::before {
 	cursor: pointer;
 	font-size: 24px;
+	color: black;
 }
 
 .fa-lightbulb::before {
 	font-size: 30px;
 	cursor: pointer;
+	color: black;
 }
 
 .fa-lightbulb.darkmode::before {
@@ -522,6 +524,7 @@ li {
 
 .fa-circle-question {
 	cursor: pointer;
+	color: black;
 }
 
 .how-to-exit.darkmode > i {

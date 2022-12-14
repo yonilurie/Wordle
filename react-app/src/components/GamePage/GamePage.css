@@ -814,3 +814,9 @@ li {
 		height: 58px;
 	}
 }
+
+@media screen and (max-height: 900px) {
+	.game-page {
+		justify-content: flex-start !important;
+	}
+}

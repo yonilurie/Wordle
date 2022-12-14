@@ -45,7 +45,6 @@ const Navbar: FC<Props> = ({
 		setErrors(["Copied to Clipboard"]);
 		setTimeout(() => setErrors([]), 3000);
 	};
-	console.log(word);
 	return (
 		<div className={`nav-bar ${darkMode ? "darkmode" : ""}`}>
 			<button

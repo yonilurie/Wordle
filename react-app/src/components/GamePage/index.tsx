@@ -5,6 +5,7 @@ import Hamburger from "./Hamburger";
 import Navbar from "./Navbar";
 import Keyboard from "./Keyboard";
 import HowToPlay from "./HowToPlay";
+import Victory from "./Victory";
 import "./GamePage.css";
 
 interface Props {
@@ -52,7 +53,9 @@ const GamePage: FC<Props> = ({ word, isWord, getWord }) => {
 	const [currRow, setCurrRow] = useState<number>(1);
 	const [guesses, setGuesses] = useState<Array<Array<string>>>([]);
 	const [guessedWords, setGuessedWords] = useState<Array<string>>([]);
-	const [darkMode, setDarkMode] = useState<boolean>(false);
+	const [darkMode, setDarkMode] = useState<boolean>(
+		localStorage.getItem("wordle-darkmode") === "true" ? true : false
+	);
 	const [usedLetters, setUsedLetters] = useState<{
 		[key: string]: string;
 	}>(alphabet);
@@ -160,16 +163,23 @@ const GamePage: FC<Props> = ({ word, isWord, getWord }) => {
 	}, [currRow]);
 
 	useEffect(() => {
+		if (localStorage.getItem("wordle-darkmode") === "true") {
+			setDarkMode(true);
+		}
+	}, []);
+
+	useEffect(() => {
 		if (darkMode) {
 			document.documentElement.style.backgroundColor =
 				"var(--dark-mode-darkest)";
+			localStorage.setItem("wordle-darkmode", "true");
 		} else {
 			document.documentElement.style.backgroundColor = "white";
+			localStorage.setItem("wordle-darkmode", "false");
 		}
 	}, [darkMode]);
 
 	useEventListener("keydown", type, documentRef);
-
 	return (
 		<div className={`game-page ${darkMode ? "darkmode" : ""}`}>
 			<Hamburger
@@ -186,6 +196,9 @@ const GamePage: FC<Props> = ({ word, isWord, getWord }) => {
 				setShowHamburger={setShowHamburger}
 				word={word}
 				setShowHelp={setShowHelp}
+				guessedWords={guessedWords}
+				guesses={guesses}
+				setErrors={setErrors}
 			></Navbar>
 			<div className="wordle-container">
 				<div className="wordle-grid" ref={gridRef}>

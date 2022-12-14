@@ -1,5 +1,5 @@
 import "./StartPage.css";
-import { Dispatch, SetStateAction, FC } from "react";
+import { useEffect, Dispatch, SetStateAction, FC } from "react";
 
 interface Props {
 	showStartPage: boolean;
@@ -17,7 +17,17 @@ const StartPage: FC<Props> = ({
 		setShowStartPage(false);
 		setTimeout(() => setGameOn(true), 300);
 	};
-	document.documentElement.style.backgroundColor = "var(--background-beige)";
+
+	useEffect(() => {
+		// Check local storage for dark mode setting
+		if (localStorage.getItem("wordle-darkmode") === "true") {
+			document.documentElement.style.backgroundColor =
+				"var(--dark-mode-darkest)";
+		} else {
+			document.documentElement.style.backgroundColor =
+				"var(--background-beige)";
+		}
+	}, []);
 	return (
 		<div className={`start-page ${showStartPage ? "" : "hidden"}`}>
 			<div className="start-page-content">

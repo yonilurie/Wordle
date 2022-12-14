@@ -1,4 +1,3 @@
-import { faL } from "@fortawesome/free-solid-svg-icons";
 import { FC, useState, useEffect } from "react";
 interface Props {
 	showHelp: boolean;

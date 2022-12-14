@@ -35,6 +35,9 @@
 .hamburger-toggle {
 	width: fit-content;
 	cursor: pointer;
+	border: none;
+	outline: none;
+	background: none;
 }
 
 .nav-bar-right-options {
@@ -42,6 +45,12 @@
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
+}
+
+.nav-bar-right-options > button {
+	outline: none;
+	border: none;
+	background: none;
 }
 
 .fa-circle-question::before {
@@ -431,6 +440,7 @@ li {
 /* Victory */
 .victory-box {
 	margin: auto;
+	display: block;
 	position: relative;
 	font-family: "Franklin";
 	font-weight: bold;
@@ -447,6 +457,8 @@ li {
 	box-sizing: border-box;
 	text-align: center;
 	cursor: pointer;
+	outline: none;
+	border: none;
 }
 
 /* How to Play modal */

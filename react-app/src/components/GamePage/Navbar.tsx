@@ -45,17 +45,17 @@ const Navbar: FC<Props> = ({
 		setErrors(["Copied to Clipboard"]);
 		setTimeout(() => setErrors([]), 3000);
 	};
-	console.log(word)
+	console.log(word);
 	return (
 		<div className={`nav-bar ${darkMode ? "darkmode" : ""}`}>
-			<div
+			<button
 				className="hamburger-toggle"
 				onClick={() => setShowHamburger((state: boolean) => !state)}
 			>
 				<i
 					className={`fa-solid fa-bars ${darkMode ? "darkmode" : ""}`}
 				/>
-			</div>
+			</button>
 			<div
 				className={`game-title smaller-title ${
 					darkMode ? "darkmode" : ""
@@ -79,27 +79,27 @@ const Navbar: FC<Props> = ({
 						</div>
 					))}
 				{victory === false && (
-					<div className="victory-box" onClick={() => resetGame()}>
+					<button className="victory-box" onClick={() => resetGame()}>
 						<p>{` You lost! The correct word was ${word},`}</p>
 						<p>{`Click to play again`}</p>
-					</div>
+					</button>
 				)}
 			</div>
 			<div className="nav-bar-right-options">
-				<div onClick={() => setShowHelp(true)}>
+				<button onClick={() => setShowHelp(true)}>
 					<i
 						className={`fa-regular fa-circle-question ${
 							darkMode ? "darkmode" : ""
 						}`}
 					></i>
-				</div>
-				<div onClick={() => setDarkMode((state: boolean) => !state)}>
+				</button>
+				<button onClick={() => setDarkMode((state: boolean) => !state)}>
 					<i
 						className={`fa-regular fa-lightbulb ${
 							darkMode ? "darkmode" : ""
 						}`}
 					/>
-				</div>
+				</button>
 			</div>
 		</div>
 	);

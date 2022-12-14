@@ -34,17 +34,18 @@ const Navbar: FC<Props> = ({
 			present: "🟨",
 			correct: "🟩",
 		};
-		let shareResult: string = `Wordle ${guessedWords.length}/6 `;
+		let shareResult: string = `Wordle ${guessedWords.length}/6 \n`;
 
 		guesses.forEach((guess: Array<string>) => {
 			let wordAttempt: string = "";
 			guess.forEach((letter: string) => (wordAttempt += map[letter]));
-			shareResult += wordAttempt + " ";
+			shareResult += wordAttempt + "\n";
 		});
 		navigator.clipboard.writeText(shareResult);
 		setErrors(["Copied to Clipboard"]);
 		setTimeout(() => setErrors([]), 3000);
 	};
+	console.log(word)
 	return (
 		<div className={`nav-bar ${darkMode ? "darkmode" : ""}`}>
 			<div
